@@ -2,6 +2,8 @@ package com.jpmc.theater;
 
 import org.junit.jupiter.api.Test;
 
+import com.fasterxml.jackson.core.JsonProcessingException;
+
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 public class TheaterTests {
@@ -17,6 +19,11 @@ public class TheaterTests {
     @Test
     void printMovieSchedule() {
         Theater theater = new Theater(LocalDateProvider.singleton());
-        theater.printSchedule();
+        try {
+            theater.printSchedule(0);
+        } catch (JsonProcessingException e) {
+            // TODO Auto-generated catch block
+            e.printStackTrace();
+        }
     }
 }
