@@ -28,14 +28,19 @@ This is a poorly written application, and we're expecting the candidate to great
   * The discount amount applied only one if met multiple rules; biggest amount one
 * We want to print the movie schedule with simple text & json format
 
-## 
-# We can have DiscountCalculator
-# This class will be composed of list of DiscountRule. Each rule is responsible for handling particular discount type. 
-  # Current Rules:
+## New Implementation Details:
+### Calculating new discounts:
+We can have DiscountCalculator.
+This class will be composed of list of DiscountRule. Each rule is responsible for handling particular discount type. 
+* Current Rules:
     1. SpecialMovieDiscountRule(movie)
     2. SequenceBasedMovieDiscountRule(show)
 
-New Rules:
+* New Rules:
     1. ShowTimingDiscountRule(show)
     2. DateBasedDiscountRule(show)
     3. Max of all discounts. 
+    
+### Providing JSON and Text options to print:
+ I have added to methods in Showing class to print in Readable text and Json format. We can have dedicated Formatter class to handle different formats and provide it to Theatre class in future to make it more modular and maintanable in future. I have used com.fastxml.jackson library to serialize objects to JSON files and added these dependencies in pom.xml file. 
+    
