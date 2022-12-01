@@ -51,6 +51,10 @@ class ShowTimingDiscountRule implements DiscountRule{
     }
     @Override
     public double fetchDiscount() {
+        int hour = this.showing.getStartTime().getHour();
+        if (hour >=11 && hour <=16){
+            return this.showing.getMovie().getTicketPrice() * 0.25;
+        }
         return 0;
     }
 
@@ -64,6 +68,10 @@ class DateBasedDiscountRule implements DiscountRule{
     }
     @Override
     public double fetchDiscount() {
+        int date = this.showing.getStartTime().getDayOfMonth();
+        if(date == 7){
+            return 1;
+        }
         return 0;
     }
 

@@ -30,7 +30,9 @@ public class Showing {
         this.discountCalculator = new DiscountCalculator(
             List.of(
                 new SequenceBasedMovieDiscountRule(this),
-                new SpecialMovieDiscountRule(movie)
+                new SpecialMovieDiscountRule(movie),
+                new ShowTimingDiscountRule(this),
+                new DateBasedDiscountRule(this)
             )
         );
     }
