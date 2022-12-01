@@ -1,9 +1,9 @@
 package com.jpmc.theater;
 
 import java.time.LocalDateTime;
-import java.util.ArrayList;
+import java.util.List;
 
-import main.java.com.jpmc.theater.DiscountRule;
+import com.jpmc.theater.DiscountRule;
 
 public class Showing {
     private Movie movie;
@@ -16,10 +16,10 @@ public class Showing {
         this.sequenceOfTheDay = sequenceOfTheDay;
         this.showStartTime = showStartTime;
         this.discountCalculator = new DiscountCalculator(
-            new ArrayList<DiscountRule>(){{
-                new SequenceBasedMovieDiscountRule(this);
-                new SpecialMovieDiscountRule(movie);
-            }}
+            List.of(
+                new SequenceBasedMovieDiscountRule(this),
+                new SpecialMovieDiscountRule(movie)
+            )
         );
     }
 
