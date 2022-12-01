@@ -27,3 +27,15 @@ This is a poorly written application, and we're expecting the candidate to great
   * Any movies showing on 7th, you'll get 1$ discount
   * The discount amount applied only one if met multiple rules; biggest amount one
 * We want to print the movie schedule with simple text & json format
+
+## 
+# We can have DiscountCalculator
+# This class will be composed of list of DiscountRule. Each rule is responsible for handling particular discount type. 
+  # Current Rules:
+    1. SpecialMovieDiscountRule(movie)
+    2. SequenceBasedMovieDiscountRule(show)
+
+New Rules:
+    1. ShowTimingDiscountRule(show)
+    2. DateBasedDiscountRule(show)
+    3. Max of all discounts. 

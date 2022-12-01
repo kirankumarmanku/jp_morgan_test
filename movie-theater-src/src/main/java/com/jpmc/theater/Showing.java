@@ -1,16 +1,26 @@
 package com.jpmc.theater;
 
 import java.time.LocalDateTime;
+import java.util.ArrayList;
+
+import main.java.com.jpmc.theater.DiscountRule;
 
 public class Showing {
     private Movie movie;
     private int sequenceOfTheDay;
     private LocalDateTime showStartTime;
+    private DiscountCalculator discountCalculator;
 
     public Showing(Movie movie, int sequenceOfTheDay, LocalDateTime showStartTime) {
         this.movie = movie;
         this.sequenceOfTheDay = sequenceOfTheDay;
         this.showStartTime = showStartTime;
+        this.discountCalculator = new DiscountCalculator(
+            new ArrayList<DiscountRule>(){{
+                new SequenceBasedMovieDiscountRule(this);
+                new SpecialMovieDiscountRule(movie);
+            }}
+        );
     }
 
     public Movie getMovie() {
@@ -34,6 +44,7 @@ public class Showing {
     }
 
     private double calculateFee(int audienceCount) {
-        return movie.calculateTicketPrice(this) * audienceCount;
+        double discount = discountCalculator.getDiscount();
+        return (movie.getTicketPrice()-discount) * audienceCount;
     }
 }
