@@ -36,7 +36,7 @@ public class Movie {
     }
 
     public double calculateTicketPrice(Showing showing) {
-        return ticketPrice;
+        return this.ticketPrice - showing.getDiscount();
     }
 
     @Override

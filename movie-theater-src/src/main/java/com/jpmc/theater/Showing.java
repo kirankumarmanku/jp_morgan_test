@@ -56,7 +56,14 @@ public class Showing {
     public int getSequenceOfTheDay() {
         return sequenceOfTheDay;
     }
-
+    public double calculateFee(int audienceCount) {
+        double discount = this.getDiscount();
+        return (movie.getTicketPrice()-discount) * audienceCount;
+    }
+    public double getDiscount(){
+        return discountCalculator.getDiscount();
+    }
+    
     public static String toJson(List<Showing> showings) throws JsonProcessingException{
         ObjectMapper mapper = new ObjectMapper();
         DateFormat df = new SimpleDateFormat("yyyy-MM-dd HH:mm a z");
@@ -97,10 +104,6 @@ public class Showing {
         else {
             return "s";
         }
-    }
-    private double calculateFee(int audienceCount) {
-        double discount = discountCalculator.getDiscount();
-        return (movie.getTicketPrice()-discount) * audienceCount;
     }
 }
 
